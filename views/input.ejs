@@ -1,0 +1,54 @@
+<!-- Include Header -->
+<%- include layout/header.ejs %>
+
+<div class="signup-form">
+    <form action="/input" method="post" class="form-horizontal">
+		<div class="col-xs-8 col-xs-offset-4">
+            <h2>Insert Data</h2>
+            <!-- Error and Success Message -->
+            <% if(messages.error){ %>
+                <h4 style="color:#d82436">Failed to Input!</h4>
+                <p>Insert the <b style="color:#d82436">Employee Data</b> correctly.</p>
+                </br>
+                <p><%- messages.error %></p>
+                <%} else if(messages.success){ %>
+                <h4 style="color:#5cb85c">Success to Input!</h4>
+                <p>Successfully insert the <b style="color:#5cb85c">Employee Data</b>.</p>
+                </br>
+            <% } %>
+		</div>
+        <div class="form-group">
+			<label class="control-label col-xs-4">Name</label>
+			<div class="col-xs-8">
+                <input type="text" class="form-control" name="name" value="<%= name %>" required="required">
+            </div>        	
+        </div>
+		<div class="form-group">
+			<label class="control-label col-xs-4">Email Address</label>
+			<div class="col-xs-8">
+                <input type="email" class="form-control" name="email" value="<%= email %>" required="required">
+            </div>        	
+        </div>
+		<div class="form-group">
+			<label class="control-label col-xs-4">Address</label>
+			<div class="col-xs-8">
+                <input type="text" class="form-control" name="address" value="<%= address %>" required="required">
+            </div>        	
+        </div>
+		<div class="form-group">
+			<label class="control-label col-xs-4">Phone Number</label>
+			<div class="col-xs-8">
+                <input type="number" class="form-control" name="phone" value="<%= phone %>" required="required">
+            </div>        	
+        </div>
+		<div class="form-group">
+			<div class="col-xs-8 col-xs-offset-4">
+                <p> Back to <a href="/">View</a></p>
+				<button type="submit" class="btn btn-primary btn-lg">Insert Data</button>
+			</div>  
+		</div>		      
+    </form>
+</div>    
+
+<!-- Include Footer -->
+<%- include layout/footer.ejs %>                       

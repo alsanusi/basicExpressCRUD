@@ -2,14 +2,59 @@
 const express = require('express')
 const app = express()
 
+//Load MySQL Configuration
+const mysql = require('mysql')
+const myConnection = require('express-myconnection')
+
+//Load DB Configuration
+const dbConfig = require('./config')
+const dbOptions = {
+    host: dbConfig.database.host,
+    user: dbConfig.database.user,
+    password: dbConfig.database.password,
+    port: dbConfig.database.port,
+    database: dbConfig.database.database
+}
+
+/**
+ * 3 strategies can be used
+ * single: Creates single database connection which is never closed.
+ * pool: Creates pool of connections. Connection is auto release when response ends.
+ * request: Creates new connection per new request. Connection is auto close when response ends.
+ */ 
+app.use(myConnection(mysql, dbOptions, 'pool'))
+
 //Setting up templaing view engine - EJS
 app.set('view engine', 'ejs')
 app.use(express.static("views"))
 
-//Index
-app.get("/", (req, res) => {
-    res.render('index')
-})
+// Express Validator Middleware for Form Validation
+const expressValidator = require('express-validator')
+app.use(expressValidator())
+
+// body-parser is used to read HTTP POST data from Form Input.
+var bodyParser = require('body-parser')
+// bodyParser.urlencoded() parses the text as URL encoded data.
+app.use(bodyParser.urlencoded({extended: true}))
+app.use(bodyParser.json())
+
+// Flash messages in order to show success or error message.
+const flash = require('express-flash')
+app.use(flash())
+
+// Flash require Session
+// Express-Session
+const session = require('express-session');
+app.use(session({
+    cookie: {maxAge: 6000},
+    secret: 'weuw',
+    resave: false,
+    saveUninitialized: false
+}))
+
+// Show the Employee Route
+const employeeRoute = require('./routes/employee')
+app.use('/', employeeRoute)
 
 //Localhost:3003
 app.listen(3000, () => {
