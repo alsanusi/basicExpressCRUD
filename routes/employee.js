@@ -159,5 +159,20 @@ app.route('/edit/(:id)')
     })
 
 // Delete Employee Data
+app.delete('/delete/(:id)', (req, res) => {
+    var employeeId = {
+        id: req.params.id
+    }
+
+    req.getConnection(function(err, con){
+        con.query('DELETE FROM employeeData WHERE id = ' + req.params.id, employeeId, function(err, result){
+            if(err){
+                throw err
+            }else{
+                res.redirect('/')
+            }
+        })
+    })
+})
 
 module.exports = app;
