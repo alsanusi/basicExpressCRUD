@@ -52,6 +52,17 @@ app.use(session({
     saveUninitialized: false
 }))
 
+// Method-Override
+var methodOverride = require('method-override')
+// Custom logic for overriding method
+app.use(methodOverride(function(req, res){
+    if(req.body && typeof req.body === 'object' && '_method' in req.body){
+        var method = req.body._method
+        delete req.body._method
+        return method
+    }
+}))
+
 // Show the Employee Route
 const employeeRoute = require('./routes/employee')
 app.use('/', employeeRoute)

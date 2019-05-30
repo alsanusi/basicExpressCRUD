@@ -2,9 +2,9 @@
 <%- include layout/header.ejs %>
 
 <div class="signup-form">
-    <form action="/input" method="post" class="form-horizontal">
+    <form action="/edit/<%= id %>" method="POST" class="form-horizontal">
 		<div class="col-xs-8 col-xs-offset-4">
-            <h2>Insert Data</h2>
+            <h2>Update Data</h2>
             <!-- Error and Success Message -->
             <% if(messages.error){ %>
                 <h4 style="color:#d82436">Failed to Input!</h4>
@@ -13,7 +13,7 @@
                 <p><%- messages.error %></p>
                 <%} else if(messages.success){ %>
                 <h4 style="color:#5cb85c">Success to Input!</h4>
-                <p>Successfully insert the <b style="color:#5cb85c">Employee Data</b>.</p>
+                <p>Successfully update the <b style="color:#5cb85c">Employee Data</b>.</p>
                 </br>
             <% } %>
 		</div>
@@ -44,7 +44,8 @@
 		<div class="form-group">
 			<div class="col-xs-8 col-xs-offset-4">
                 <p> Back to <a href="/">View</a></p>
-				<button type="submit" class="btn btn-primary btn-lg">Update Data</button>
+                <button type="submit" name="Submit" value="Edit" class="btn btn-primary btn-lg">Update Data</button>
+                <input type="hidden" name="_method" value="PUT"/>
 			</div>  
 		</div>		      
     </form>
