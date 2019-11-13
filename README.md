@@ -21,7 +21,7 @@ nodemon app.js
 
 ## Built With
 
-* [Express.js](https://expressjs.com/) - The Web Framework used
-* [SQL](https://www.mysql.com/) - The Database
+* [Express.js](https://expressjs.com/) - The Web Framework used.
+* [SQL](https://www.mysql.com/) - The Database.
 
 Thanks.
