@@ -2,18 +2,20 @@
 const express = require('express')
 const app = express()
 
+// Load Env
+require('dotenv').config()
+
 //Load MySQL Configuration
 const mysql = require('mysql')
 const myConnection = require('express-myconnection')
 
 //Load DB Configuration
-const dbConfig = require('./config')
 const dbOptions = {
-    host: dbConfig.database.host,
-    user: dbConfig.database.user,
-    password: dbConfig.database.password,
-    port: dbConfig.database.port,
-    database: dbConfig.database.database
+    host: process.env.DB_HOST,
+    user: process.env.DB_USER,
+    password: process.env.DB_PASS,
+    port: process.env.DB_PORT,
+    database: process.env.DB_NAME
 }
 
 /**
