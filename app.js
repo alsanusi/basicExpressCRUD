@@ -78,7 +78,16 @@ app.get('/edit/(:id)', employeeRoute.showEditData)
 app.put('/edit/(:id)', employeeRoute.editData)
 app.delete('/delete/(:id)', employeeRoute.deleteData)
 
+//Handle Express Error
+app.use((err, req, res, next) => {
+ res.status(500).json({
+   status: false,
+   name: err.name,
+   message: err.message
+ })
+})
+
 //Localhost:3003
-app.listen(3000, () => {
-    console.log('Server running at port 3000: http://127.0.0.1:3000')
+app.listen(3003, () => {
+    console.log('Server running at port 3000: http://127.0.0.1:3003')
 })
