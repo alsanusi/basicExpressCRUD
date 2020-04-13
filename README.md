@@ -7,7 +7,8 @@ For the very first time, you need to run this command:
 npm install
 ```
 
-Since this web app contain sql db, you need to **export the sql file to your local machine** (Database configuration on ./.env).
+Since this web app contain sql db, you need to **export the sql file to your local machine**
+\*note: database configuration on ./.env.
 
 You can start the web app, with this command:
 ```
